@@ -1,0 +1,9 @@
+# SECTION 1: SOURCE CODE
+
+
+# SECTION 2: TEST REPORT
+[WARNING] No test logs found. Run tests first!
+
+
+# SECTION 3: SAMPLE OUTPUT
+[WARNING] No sample output found at data/reports/latest_output.md.
