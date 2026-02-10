@@ -17,15 +17,19 @@ Search-R1 introduces a novel approach where LLMs learn when and how to search fo
 
 ```
 .
-├── searchr1_config.py    # Configuration file (MODIFY MODEL/API KEY HERE)
-├── data.py               # Dataset creation function
-├── search_engine.py      # Search engine (keyword-based, can be extended to RAG/web)
-├── trajectory.py         # Trajectory and TokenStep data structures
-├── trainer.py            # Main SearchR1Trainer class with GRPO (for local models)
-├── trainer_openai.py    # SearchR1TrainerOpenAI class (for OpenAI API)
-├── run.py                # Main training script (for local models)
-├── run_openai.py         # Evaluation script (for OpenAI API)
-└── requirements.txt      # Python dependencies
+├── src/                  # Source code
+│   ├── agent/            # Agent components (model, search engine)
+│   ├── core/             # Core logic (GRPO, trajectory)
+│   ├── data/             # Data loading
+│   ├── rewards/          # Reward functions
+│   ├── utils/            # Utilities (config)
+│   └── run.py            # Main entry point
+├── scripts/              # Helper scripts and OpenAI evaluation
+│   ├── run_openai.py
+│   └── trainer_openai.py
+├── tests/                # Unit tests
+├── requirements.txt      # Python dependencies
+└── ...
 ```
 
 ## Setup Instructions
@@ -59,10 +63,13 @@ openai_model: str = "gpt-4o-mini"  # or "gpt-4o", "gpt-3.5-turbo", etc.
 
 #### Option B: Use Local Model (Required for full RL training)
 
-Modify `searchr1_config.py`:
+#### Option B: Use Local Model (Required for full RL training)
+
+Modify `src/utils/config.py` or pass arguments (implementation pending):
 ```python
-use_openai: bool = False
-model_name_or_path: str = "your-model-path-here"  # Modify this!
+@dataclass
+class SearchR1Config:
+    model_name_or_path: str = "your-model-path-here"  # Modify in src/utils/config.py
 ```
 
 **VRAM Requirements:**
@@ -78,7 +85,7 @@ python run_openai.py
 
 **For Local Model (full RL training):**
 ```bash
-python run.py
+python -m src.run
 ```
 
 ## Important Note: OpenAI vs Local Models
