@@ -8,7 +8,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.utils.config import SearchR1Config
-from scripts.trainer_openai import SearchR1TrainerOpenAI
+from src.core.trainer_openai import SearchR1TrainerOpenAI
 from src.data.dataset import create_training_data
 
 def main():

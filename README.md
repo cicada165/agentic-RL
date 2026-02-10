@@ -65,12 +65,13 @@ openai_model: str = "gpt-4o-mini"  # or "gpt-4o", "gpt-3.5-turbo", etc.
 
 #### Option B: Use Local Model (Required for full RL training)
 
-Modify `src/utils/config.py` or pass arguments (implementation pending):
-```python
-@dataclass
-class SearchR1Config:
-    model_name_or_path: str = "your-model-path-here"  # Modify in src/utils/config.py
+Modify `src/utils/config.py` or use environment variables:
+```bash
+export MODEL_NAME_OR_PATH="Qwen/Qwen2.5-0.5B-Instruct"
+export DEVICE="cuda"
 ```
+
+Or modify the default values in `src/utils/config.py`.
 
 **VRAM Requirements:**
 - `qwen3-0.6b`: At least 20GB VRAM (performance will be poor)

@@ -20,9 +20,9 @@ class SearchR1Config:
     # OpenAI / API Configuration
     use_openai: bool = False
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
-    openai_api_base: str = "https://models.inference.ai.azure.com"  # Default for GitHub Models
-    openai_model: str = "gpt-4o"  # Default model name
-    model_provider: str = "github"  # "openai", "github", or "azure"
+    openai_api_base: str = os.getenv("OPENAI_API_BASE", "https://models.inference.ai.azure.com")
+    openai_model: str = os.getenv("OPENAI_MODEL", "gpt-4o")
+    model_provider: str = os.getenv("MODEL_PROVIDER", "github")  # "openai", "github", or "azure"
     
     # Generation Parameters
     max_tokens: int = 500  # Maximum tokens per trajectory

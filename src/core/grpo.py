@@ -1,5 +1,5 @@
 """
-GROP (Group Relative Policy Optimization) Trainer for Search-R1.
+GRPO (Group Relative Policy Optimization) Trainer for Search-R1.
 This module implements the core training loop, trajectory generation, and policy update logic.
 """
 
@@ -73,7 +73,7 @@ class SearchR1Trainer:
 {query}<|im_end|>
 '''
     
-    def generate_trajectory(self, query: str, max_tokens: int = None) -> Trajectory:
+    def generate_trajectory(self, query: str, max_tokens: Optional[int] = None) -> Trajectory:
         """
         Generate a trajectory for a given query with search capability.
         """
@@ -308,6 +308,8 @@ class SearchR1Trainer:
                 
                 avg_loss = total_loss.item()
                 avg_kl = total_kl.item()
+                
+                print(f"    Update {_+1}/{self.config.update_times}: Loss={avg_loss:.4f}, KL={avg_kl:.4f}")
                 
         torch.cuda.empty_cache()
         return {
